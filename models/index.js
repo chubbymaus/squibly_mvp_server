@@ -2,6 +2,7 @@ import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize('squibly', 'postgres', 'postgres', {
   dialect: 'postgres',
+  underscored: true,
 });
 
 const models = {
