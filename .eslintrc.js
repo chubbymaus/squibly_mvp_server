@@ -1,3 +1,9 @@
 module.exports = {
-    "extends": "airbnb-base"
+  extends: "airbnb-base",
+  // prettier-ignore
+  rules: {
+    "comma-dangle": 0,
+    "quotes": 0,
+    "function-paren-newline": 0
+  }
 };
