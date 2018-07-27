@@ -1,5 +1,6 @@
 import formatErrors from "../formatErrors";
 import requiresAuth from "../permissions";
+// import { AsyncResource } from "async_hooks";
 
 export default {
   Query: {
@@ -35,23 +36,31 @@ export default {
           console.log(err);
           return {
             ok: false,
-            errors: formatErrors(err),
+            errors: formatErrors(err, models),
           };
         }
       }),
     createTeam: requiresAuth.createResolver(async (parent, args, { models, user }) => {
       try {
-        const team = await models.Team.create({ ...args, owner: user.id });
-        await models.Channel.bulkCreate([{ name: 'general', public: true, teamId: team.id }, { name: 'random', public: true, teamId: team.id }]);
+        const response = await models.sequelize.transaction(
+          async () => {
+            const team = await models.Team.create({ ...args, owner: user.id });
+            await models.Channel.bulkCreate([
+              { name: 'general', public: true, teamId: team.id },
+              { name: 'random', public: true, teamId: team.id }
+            ]);
+            return team;
+          }
+        );
         return {
           ok: true,
-          team
+          team: response,
         };
       } catch (err) {
         console.log(err);
         return {
           ok: false,
-          errors: formatErrors(err),
+          errors: formatErrors(err, models),
         };
       }
     }),
