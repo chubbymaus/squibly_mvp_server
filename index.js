@@ -8,7 +8,6 @@ import cors from "cors";
 import jwt from 'jsonwebtoken';
 import { createServer } from 'http';
 import { execute, subscribe } from 'graphql';
-import { PubSub } from 'graphql-subscriptions';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 
 import models from "./models";
@@ -17,20 +16,18 @@ import { refreshTokens } from './auth';
 const SECRET = "sdfacysdfasdfhfuhijbkwerjh";
 const SECRET2 = "sdfacysdfasdasdfasdffverteroiyfhfuhijbkwerjh";
 
-const typeDefs = mergeTypes(fileLoader(path.join(__dirname, "./schema")));
+const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
 
-const resolvers = mergeResolvers(
-  fileLoader(path.join(__dirname, "./resolvers"))
-);
+const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
 
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
 const app = express();
 
-app.use(cors("*"));
+app.use(cors('*'));
 
 const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
@@ -54,8 +51,8 @@ const addUser = async (req, res, next) => {
 
 app.use(addUser);
 
-const graphqlEndpoint = "/graphql";
-// bodyParser is needed just for POST.
+const graphqlEndpoint = '/graphql';
+
 app.use(
   graphqlEndpoint,
   bodyParser.json(),
@@ -65,26 +62,28 @@ app.use(
       models,
       user: req.user,
       SECRET,
-      SECRET2
+      SECRET2,
     },
   })),
 );
 
-app.use("/graphiql", graphiqlExpress({ endpointURL: graphqlEndpoint }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
 
 const server = createServer(app);
 
 models.sequelize.sync({}).then(() => {
   server.listen(8080, () => {
     // eslint-disable-next-line no-new
-    new SubscriptionServer({
-      execute,
-      subscribe,
-      schema,
-    }, {
-      server,
-      path: '/subscriptions',
-    });
+    new SubscriptionServer(
+      {
+        execute,
+        subscribe,
+        schema,
+      },
+      {
+        server,
+        path: '/subscriptions',
+      },
+    );
   });
 });
-
