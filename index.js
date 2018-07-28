@@ -77,7 +77,7 @@ app.use(
 
 const server = createServer(app);
 
-models.sequelize.sync({}).then(() => {
+models.sequelize.sync({ }).then(() => {
   server.listen(8080, () => {
     // eslint-disable-next-line no-new
     new SubscriptionServer(
@@ -99,11 +99,11 @@ models.sequelize.sync({}).then(() => {
               throw new Error('Invalid auth tokens');
             }
 
-            const member = await models.Member.findOne({ where: { teamId: 1, userId: user.id } });
+            // const member = await models.Member.findOne({ where: { teamId: 1, userId: user.id } });
 
-            if (!member) {
-              throw new Error('Missing auth tokens!');
-            }
+            // if (!member) {
+            //   throw new Error('Missing auth tokens!');
+            // }
 
             return true;
           }
