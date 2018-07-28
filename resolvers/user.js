@@ -12,6 +12,7 @@ export default {
         'select * from teams as team join members as member on team.id = member.team_id where member.user_id = ?', {
           replacements: [user.id],
           model: models.Team,
+          raw: true,
         },
       ),
   },
