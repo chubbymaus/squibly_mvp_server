@@ -14,52 +14,27 @@ export default {
       )),
   },
   Mutation: {
-    addTeamMember: requiresAuth.createResolver(async (parent, {
-      email,
-      teamId
-    }, {
-        models,
-        user
-      }) => {
+    addTeamMember: requiresAuth.createResolver(async (parent, { email, teamId }, { models, user }) => {
       try {
-        const memberPromise = models.Member.findOne({
-          where: {
-            teamId,
-            userId: user.id
-          }
-        }, {
-          raw: true
-        });
-        const userToAddPromise = models.User.findOne({
-          where: {
-            email
-          }
-        }, {
-          raw: true
-        });
+        const memberPromise = models.Member.findOne(
+          { where: { teamId, userId: user.id } },
+          { raw: true },
+        );
+        const userToAddPromise = models.User.findOne({ where: { email } }, { raw: true });
         const [member, userToAdd] = await Promise.all([memberPromise, userToAddPromise]);
         if (!member.admin) {
           return {
             ok: false,
-            errors: [{
-              path: 'email',
-              message: 'You cannot add members to the team'
-            }],
+            errors: [{ path: 'email', message: 'You cannot add members to the team' }],
           };
         }
         if (!userToAdd) {
           return {
             ok: false,
-            errors: [{
-              path: 'email',
-              message: 'Could not find user with this email'
-            }],
+            errors: [{ path: 'email', message: 'Could not find user with this email' }],
           };
         }
-        await models.Member.create({
-          userId: userToAdd.id,
-          teamId
-        });
+        await models.Member.create({ userId: userToAdd.id, teamId });
         return {
           ok: true,
         };
@@ -71,27 +46,12 @@ export default {
         };
       }
     }),
-    createTeam: requiresAuth.createResolver(async (parent, args, {
-      models,
-      user
-    }) => {
+    createTeam: requiresAuth.createResolver(async (parent, args, { models, user }) => {
       try {
         const response = await models.sequelize.transaction(async () => {
           const team = await models.Team.create({ ...args });
-          await models.Channel.bulkCreate([{
-            name: 'general',
-            public: true,
-            teamId: team.id
-          }, {
-            name: 'random',
-            public: true,
-            teamId: team.id
-          }]);
-          await models.Member.create({
-            teamId: team.id,
-            userId: user.id,
-            admin: true
-          });
+          await models.Channel.create({ name: 'general', public: true, teamId: team.id });
+          await models.Member.create({ teamId: team.id, userId: user.id, admin: true });
           return team;
         });
         return {
