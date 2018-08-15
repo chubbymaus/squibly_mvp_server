@@ -6,7 +6,11 @@ export default (sequelize, DataTypes) => {
       public: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
-      }
+      },
+      dm: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
   );
 

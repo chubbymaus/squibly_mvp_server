@@ -51,8 +51,16 @@ export default {
       try {
         const response = await models.sequelize.transaction(async (transaction) => {
           const team = await models.Team.create({ ...args }, { transaction });
-          await models.Channel.create(
-            { name: 'general', public: true, teamId: team.id },
+          await models.Channel.bulkCreate(
+            [{
+              name: 'general',
+              public: true,
+              teamId: team.id
+            }, {
+              name: 'random',
+              public: true,
+              teamId: team.id
+            }],
             { transaction },
           );
           await models.Member.create(
@@ -79,8 +87,10 @@ export default {
       models.sequelize.query(
         `
         select distinct on (id) *
-        from channels as c, pcmembers as pc 
-        where c.team_id = :teamId and (c.public = true or (pc.user_id = :userId and c.id = pc.channel_id));`,
+        from channels as c 
+        left outer join pcmembers as pc 
+        on c.id = pc.channel_id
+        where c.team_id = :teamId and (c.public = true or pc.user_id = :userId);`,
         {
           replacements: { teamId: id, userId: user.id },
           model: models.Channel,
