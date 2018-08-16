@@ -10,9 +10,11 @@ import { createServer } from 'http';
 import { execute, subscribe } from 'graphql';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import formidable from 'formidable';
+import DataLoader from 'dataloader';
 
 import models from "./models";
 import { refreshTokens } from './auth';
+import { channelBatcher } from './batchFunctions';
 
 const SECRET = "sdfacysdfasdfhfuhijbkwerjh";
 const SECRET2 = "sdfacysdfasdasdfasdffverteroiyfhfuhijbkwerjh";
@@ -98,6 +100,7 @@ app.use(
       user: req.user,
       SECRET,
       SECRET2,
+      channelLoader: new DataLoader(ids => channelBatcher(ids, models, req.user)),
     },
   })),
 );
@@ -123,6 +126,7 @@ models.sequelize.sync({}).then(() => {
         execute,
         subscribe,
         schema,
+        // eslint-disable-next-line
         onConnect: async ({ token, refreshToken }, webSocket) => {
           if (token && refreshToken) {
             try {
