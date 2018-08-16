@@ -6,6 +6,13 @@ export default (sequelize, DataTypes) => {
       url: DataTypes.STRING,
       filetype: DataTypes.STRING,
     },
+    {
+      indexes: [
+        {
+          fields: ['created_at'],
+        },
+      ],
+    },
   );
 
   Message.associate = (models) => {
