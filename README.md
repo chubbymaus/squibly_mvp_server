@@ -11,7 +11,7 @@
 If you need to drop the database add `force: true` between curly brackets line 121(subject to change) of '/index.js'
 
 #### example:
-```
+```js
 models.sequelize.sync({ force: true }).then(() => {
   server.listen(8080, () => {
 ```  
