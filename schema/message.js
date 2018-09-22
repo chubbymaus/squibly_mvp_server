@@ -8,11 +8,14 @@ export default `
     created_at: String!
     url: String
     filetype: String
+    filename: String
   }
 
   input File {
     type: String!,
     path: String!,
+    name: String
+  
   }
 
   type Subscription {

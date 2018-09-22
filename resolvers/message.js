@@ -65,6 +65,7 @@ export default {
           if (file) {
             messageData.filetype = file.type;
             messageData.url = file.path;
+            messageData.filename = file.name;
           }
           const message = await models.Message.create({
             ...messageData,

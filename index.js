@@ -71,12 +71,13 @@ const fileMiddleware = (req, res, next) => {
     const document = JSON.parse(operations);
 
     if (Object.keys(files).length) {
-      const { file: { type, path: filePath } } = files;
+      const { file: { type, path: filePath, name } } = files;
       console.log(type);
       console.log(filePath);
       document.variables.file = {
         type,
         path: filePath,
+        name
       };
     }
 
