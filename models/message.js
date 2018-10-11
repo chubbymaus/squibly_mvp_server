@@ -6,6 +6,8 @@ export default (sequelize, DataTypes) => {
       url: DataTypes.STRING,
       filetype: DataTypes.STRING,
       filename: DataTypes.STRING,
+      session_key: DataTypes.STRING,
+      signature: DataTypes.STRING,
     },
     {
       indexes: [
