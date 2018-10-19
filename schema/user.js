@@ -2,6 +2,9 @@ export default `
 
   type User {
     id: Int!
+    firstname: String!
+    lastname: String!
+    jobtitle: String!
     username: String!
     email: String!
     teams: [Team!]!
@@ -27,7 +30,7 @@ export default `
   }
 
   type Mutation {
-    register(username: String!, email: String!, password: String!): RegisterResponse!
+    register(firstname: String!, lastname: String!, username: String!, jobtitle: String!, email: String!, password: String!): RegisterResponse!
     login(email: String!, password: String!): LoginResponse!
   }
 
