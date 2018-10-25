@@ -2,9 +2,8 @@ import bcrypt from 'bcrypt';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define("user", {
-    firstname: {
+    firstName: {
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         isAlphanumeric: {
           args: true,
@@ -16,9 +15,8 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    lastname: {
+    lastName: {
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         isAlphanumeric: {
           args: true,
@@ -30,9 +28,8 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    jobtitle: {
+    jobTitle: {
       type: DataTypes.STRING,
-      unique: true,
       validate: {
         isAlphanumeric: {
           args: true,
@@ -58,7 +55,16 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    public_key: {
+    passphrase: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlphanumeric: {
+          args: true,
+          msg: "The username can only contain letters and numbers"
+        }
+      }
+    },
+    publicKey: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
@@ -68,7 +74,7 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    private_key: {
+    privateKey: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
@@ -78,7 +84,7 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    signature_public_key: {
+    sigPublicKey: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
@@ -88,27 +94,13 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    signature_private_key: {
+    sigPrivateKey: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
         isAlphanumeric: {
           args: true,
           msg: "The username can only contain letters and numbers"
-        }
-      }
-    },
-    passphrase_hint: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: "The passphrase hint can only contain letters and numbers"
-        },
-        len: {
-          args: [3, 25],
-          msg: "The passphrase hint needs to be between 3 and 25 characters long"
         }
       }
     },

@@ -119,7 +119,7 @@ app.use('/files', express.static('files'));
 
 const server = createServer(app);
 
-models.sequelize.sync({ }).then(() => {
+models.sequelize.sync({ force: true }).then(() => {
   server.listen(8080, () => {
     // eslint-disable-next-line no-new
     new SubscriptionServer(
@@ -148,4 +148,5 @@ models.sequelize.sync({ }).then(() => {
       },
     );
   });
+  console.log('////////we good///////////');
 });

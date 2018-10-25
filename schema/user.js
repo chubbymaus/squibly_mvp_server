@@ -2,9 +2,14 @@ export default `
 
   type User {
     id: Int!
-    firstname: String!
-    lastname: String!
-    jobtitle: String!
+    firstName: String!
+    lastName: String!
+    jobTitle: String!
+    passphrase: String!
+    publicKey: String!
+    privateKey: String!
+    sigPublicKey: String!
+    sigPrivateKey: String!
     username: String!
     email: String!
     teams: [Team!]!
@@ -30,7 +35,7 @@ export default `
   }
 
   type Mutation {
-    register(firstname: String!, lastname: String!, username: String!, jobtitle: String!, email: String!, password: String!): RegisterResponse!
+    register(firstName: String!, lastName: String!, username: String!, jobTitle: String!, passphrase: String!, publicKey: String!, privateKey: String!, sigPublicKey: String!, sigPrivateKey: String!, email: String!, password: String!): RegisterResponse!
     login(email: String!, password: String!): LoginResponse!
   }
 
