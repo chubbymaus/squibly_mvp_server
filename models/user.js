@@ -65,44 +65,21 @@ export default (sequelize, DataTypes) => {
       }
     },
     publicKey: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: "The username can only contain letters and numbers"
-        }
-      }
+      type: DataTypes.JSON,
+      // unique: true,
+
     },
     privateKey: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: "The username can only contain letters and numbers"
-        }
-      }
+      type: DataTypes.JSON,
+      // unique: true,
     },
     sigPublicKey: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: "The username can only contain letters and numbers"
-        }
-      }
+      type: DataTypes.JSON,
+      // unique: true,
     },
     sigPrivateKey: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: "The username can only contain letters and numbers"
-        }
-      }
+      type: DataTypes.JSON,
+      // unique: true,
     },
     email: {
       type: DataTypes.STRING,
