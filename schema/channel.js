@@ -5,6 +5,11 @@ export default `
     name: String!
     public: Boolean!
     messages: [Message!]!
+    passphrase: String!
+    publicKey: String!
+    privateKey: String!
+    sigPublicKey: String!
+    sigPrivateKey: String!
     users: [User!]!
     dm: Boolean!
   }
@@ -21,7 +26,7 @@ export default `
   }
 
   type Mutation {
-    createChannel(teamId: Int!, name: String!, public: Boolean=false, members: [Int!]=[]): ChannelResponse!
+    createChannel(teamId: Int!, name: String!, public: Boolean=false, passphrase: String!, publicKey: String!, privateKey: String!, sigPublicKey: String!, sigPrivateKey: String!, members: [Int!]=[]): ChannelResponse!
     getOrCreateChannel(teamId: Int!, members: [Int!]!): DMChannelResponse!
   }
 `;

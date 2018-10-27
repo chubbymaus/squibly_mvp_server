@@ -9,6 +9,32 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    passphrase: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlphanumeric: {
+          args: true,
+          msg: "The username can only contain letters and numbers"
+        }
+      }
+    },
+    publicKey: {
+      type: DataTypes.JSON,
+      // unique: true,
+
+    },
+    privateKey: {
+      type: DataTypes.JSON,
+      // unique: true,
+    },
+    sigPublicKey: {
+      type: DataTypes.JSON,
+      // unique: true,
+    },
+    sigPrivateKey: {
+      type: DataTypes.JSON,
+      // unique: true,
+    },
   });
 
   Channel.associate = (models) => {
