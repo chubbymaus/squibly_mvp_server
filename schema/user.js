@@ -19,6 +19,7 @@ export default `
     me: User!
     allUsers: [User!]!
     getUser( userId: Int! ): User
+    passPhrase: User!
   }
 
   type RegisterResponse {
