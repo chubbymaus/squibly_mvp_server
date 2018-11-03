@@ -55,14 +55,9 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    passphrase: {
+    passphraseHint: {
       type: DataTypes.STRING,
-      validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: "The username can only contain letters and numbers"
-        }
-      }
+
     },
     publicKey: {
       type: DataTypes.JSON,

@@ -5,7 +5,7 @@ export default `
     firstName: String!
     lastName: String!
     jobTitle: String!
-    passphrase: String!
+    passphraseHint: String!
     publicKey: String!
     privateKey: String!
     sigPublicKey: String!
@@ -18,6 +18,10 @@ export default `
   type Query {
     me: User!
     allUsers: [User!]!
+    getUserPublicKey( userId: Int! ): User
+    getUserPrivateKey( userId: Int! ): User
+    getUserSigPublicKey( userId: Int! ): User
+    getUserSigPrivateKey( userId: Int! ): User
     getUser( userId: Int! ): User
     passPhrase: User!
   }
@@ -32,11 +36,12 @@ export default `
     ok: Boolean!
     token: String
     refreshToken: String
+    
     errors: [Error!]
   }
 
   type Mutation {
-    register(firstName: String!, lastName: String!, username: String!, jobTitle: String!, passphrase: String!, publicKey: String!, privateKey: String!, sigPublicKey: String!, sigPrivateKey: String!, email: String!, password: String!): RegisterResponse!
+    register(firstName: String!, lastName: String!, username: String!, jobTitle: String!, passphraseHint: String!, publicKey: String!, privateKey: String!, sigPublicKey: String!, sigPrivateKey: String!, email: String!, password: String!): RegisterResponse!
     login(email: String!, password: String!): LoginResponse!
   }
 
