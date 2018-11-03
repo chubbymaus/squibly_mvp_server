@@ -21,10 +21,8 @@ export default `
   }
 
   type Query {
-    getChannelPublicKey( channelId: Int! ): Channel
-    getChannelPrivateKey( channelId: Int! ): Channel
-    getChannelSigPublicKey( channelId: Int! ): Channel
-    getChannelSigPrivateKey( channelId: Int! ): Channel
+    getChannelPublicKeys( channelId: Int! ): Channel
+    getChannelPrivateKeys( channelId: Int! ): Channel
   }
 
   type DMChannelResponse {

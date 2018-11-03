@@ -18,10 +18,8 @@ export default `
   type Query {
     me: User!
     allUsers: [User!]!
-    getUserPublicKey( userId: Int! ): User
-    getUserPrivateKey( userId: Int! ): User
-    getUserSigPublicKey( userId: Int! ): User
-    getUserSigPrivateKey( userId: Int! ): User
+    getUserPublicKeys( userId: Int! ): User
+    getUserPrivateKeys( userId: Int! ): User
     getUser( userId: Int! ): User
     passPhrase: User!
   }
