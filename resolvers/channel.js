@@ -3,10 +3,10 @@ import requiresAuth from '../permissions';
 
 export default {
   Query: {
-    getChannelPublicKeys: (parent, { channelId }, { models }) =>
-      models.Channel.findOne({ where: { id: channelId } }),
-    getChannelPrivateKeys: (parent, { channelId }, { models }) =>
-      models.Channel.findOne({ where: { id: channelId } }),
+    getChannelPublicKeys: (parent, { channelName }, { models }) =>
+      models.Channel.findOne({ where: { name: channelName } }),
+    getChannelPrivateKeys: (parent, { channelName }, { models }) =>
+      models.Channel.findOne({ where: { name: channelName } }),
   },
 
   Mutation: {
