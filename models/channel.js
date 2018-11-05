@@ -9,25 +9,25 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    passphraseHint: {
+    passphrase_hint: {
       type: DataTypes.STRING,
 
     },
-    publicKey: {
-      type: DataTypes.JSON,
+    public_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
 
     },
-    privateKey: {
-      type: DataTypes.JSON,
+    private_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
     },
-    sigPublicKey: {
-      type: DataTypes.JSON,
+    sig_public_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
     },
-    sigPrivateKey: {
-      type: DataTypes.JSON,
+    sig_private_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
     },
   });

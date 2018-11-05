@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define("user", {
-    firstName: {
+    firstname: {
       type: DataTypes.STRING,
       validate: {
         isAlphanumeric: {
@@ -15,7 +15,7 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    lastName: {
+    lastname: {
       type: DataTypes.STRING,
       validate: {
         isAlphanumeric: {
@@ -28,13 +28,9 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    jobTitle: {
+    jobtitle: {
       type: DataTypes.STRING,
       validate: {
-        isAlphanumeric: {
-          args: true,
-          msg: "The job title can only contain letters and numbers"
-        },
         len: {
           args: [3, 25],
           msg: "The job title needs to be between 3 and 25 characters long"
@@ -55,25 +51,25 @@ export default (sequelize, DataTypes) => {
         }
       }
     },
-    passphraseHint: {
+    passphrase_hint: {
       type: DataTypes.STRING,
 
     },
-    publicKey: {
-      type: DataTypes.JSON,
+    public_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
 
     },
-    privateKey: {
-      type: DataTypes.JSON,
+    private_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
     },
-    sigPublicKey: {
-      type: DataTypes.JSON,
+    sig_public_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
     },
-    sigPrivateKey: {
-      type: DataTypes.JSON,
+    sig_private_key: {
+      type: DataTypes.STRING(2048),
       // unique: true,
     },
     email: {
