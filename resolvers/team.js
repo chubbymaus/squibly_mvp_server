@@ -56,10 +56,6 @@ export default {
               name: 'general',
               public: true,
               teamId: team.id
-            }, {
-              name: 'random',
-              public: true,
-              teamId: team.id
             }],
             { transaction },
           );
