@@ -6,6 +6,8 @@ export default `
     user: User!
     channel: Channel!
     created_at: String!
+    session_key: String!
+    signature: String!
     url: String
     filetype: String
     filename: String
@@ -27,7 +29,7 @@ export default `
   }
 
   type Mutation {
-    createMessage(channelId: Int!, text: String, file: File): Boolean!
+    createMessage(channelId: Int!, text: String, session_key: String, signature: String, file: File): Boolean!
   }
 
 `;
