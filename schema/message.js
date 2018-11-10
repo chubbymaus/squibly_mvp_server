@@ -6,8 +6,8 @@ export default `
     user: User!
     channel: Channel!
     created_at: String!
-    session_key: String!
-    signature: String!
+    session_key: String
+    signature: String
     url: String
     filetype: String
     filename: String
