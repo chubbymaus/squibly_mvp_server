@@ -64,6 +64,8 @@ export default {
         pubsub.publish(NEW_DIRECT_MESSAGE, {
           teamId: args.teamId,
           senderId: user.id,
+          sender_name: args.sender_name,
+          receiver_name: args.receiver_name,
           session_key: args.session_key,
           signature: args.signature,
           receiverId: args.receiverId,

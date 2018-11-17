@@ -3,6 +3,8 @@ export default `
   type DirectMessage {
     id: Int!
     text: String!
+    sender_name: String!
+    receiver_name: String!
     sender: User!
     receiver: User!
     receiverId: Int!
@@ -20,7 +22,7 @@ export default `
   }
 
   type Mutation {
-    createDirectMessage(receiverId: Int!, text: String!, session_key: String, signature: String, teamId: Int!): Boolean!
+    createDirectMessage(receiverId: Int!, text: String!, sender_name: String!, receiver_name: String!, session_key: String, signature: String, teamId: Int!): Boolean!
   }
 
 `;
