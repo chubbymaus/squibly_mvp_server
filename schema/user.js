@@ -2,6 +2,14 @@ export default `
 
   type User {
     id: Int!
+    firstname: String!
+    lastname: String!
+    jobtitle: String!
+    passphrase_hint: String!
+    public_key: String!
+    private_key: String!
+    sig_public_key: String!
+    sig_private_key: String!
     username: String!
     email: String!
     teams: [Team!]!
@@ -10,7 +18,10 @@ export default `
   type Query {
     me: User!
     allUsers: [User!]!
+    getUserPublicKeys( userName: String! ): User
+    getUserPrivateKeys( userName: String! ): User
     getUser( userId: Int! ): User
+    passPhrase: User!
   }
 
   type RegisterResponse {
@@ -23,11 +34,12 @@ export default `
     ok: Boolean!
     token: String
     refreshToken: String
+    
     errors: [Error!]
   }
 
   type Mutation {
-    register(username: String!, email: String!, password: String!): RegisterResponse!
+    register(firstname: String!, lastname: String!, username: String!, jobtitle: String!, passphrase_hint: String!, public_key: String!, private_key: String!, sig_public_key: String!, sig_private_key: String!, email: String!, password: String!): RegisterResponse!
     login(email: String!, password: String!): LoginResponse!
   }
 

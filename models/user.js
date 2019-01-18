@@ -2,6 +2,41 @@ import bcrypt from 'bcrypt';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define("user", {
+    firstname: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlphanumeric: {
+          args: true,
+          msg: "The first name can only contain letters"
+        },
+        len: {
+          args: [2, 25],
+          msg: "The first name needs to be between 2 and 25 characters long"
+        }
+      }
+    },
+    lastname: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlphanumeric: {
+          args: true,
+          msg: "The last name can only contain letters"
+        },
+        len: {
+          args: [2, 25],
+          msg: "The last name needs to be between 2 and 25 characters long"
+        }
+      }
+    },
+    jobtitle: {
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [3, 25],
+          msg: "The job title needs to be between 3 and 25 characters long"
+        }
+      }
+    },
     username: {
       type: DataTypes.STRING,
       unique: true,
@@ -15,6 +50,27 @@ export default (sequelize, DataTypes) => {
           msg: "The username needs to be between 3 and 25 characters long"
         }
       }
+    },
+    passphrase_hint: {
+      type: DataTypes.STRING,
+
+    },
+    public_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
+
+    },
+    private_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
+    },
+    sig_public_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
+    },
+    sig_private_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
     },
     email: {
       type: DataTypes.STRING,

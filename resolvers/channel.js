@@ -2,6 +2,13 @@ import formatErrors from '../formatErrors';
 import requiresAuth from '../permissions';
 
 export default {
+  Query: {
+    getChannelPublicKeys: (parent, { channelName }, { models }) =>
+      models.Channel.findOne({ where: { name: channelName } }),
+    getChannelPrivateKeys: (parent, { channelName }, { models }) =>
+      models.Channel.findOne({ where: { name: channelName } }),
+  },
+
   Mutation: {
     getOrCreateChannel: requiresAuth.createResolver(
       async (parent, { teamId, members }, { models, user }) => {

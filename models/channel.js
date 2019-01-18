@@ -9,6 +9,27 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    passphrase_hint: {
+      type: DataTypes.STRING,
+
+    },
+    public_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
+
+    },
+    private_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
+    },
+    sig_public_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
+    },
+    sig_private_key: {
+      type: DataTypes.STRING(2048),
+      // unique: true,
+    },
   });
 
   Channel.associate = (models) => {

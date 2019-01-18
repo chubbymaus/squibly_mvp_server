@@ -1,6 +1,10 @@
 export default (sequelize, DataTypes) => {
   const DirectMessage = sequelize.define('direct_message', {
     text: DataTypes.STRING,
+    sender_name: DataTypes.STRING,
+    receiver_name: DataTypes.STRING,
+    session_key: DataTypes.STRING(2048),
+    signature: DataTypes.STRING(2048),
   });
 
   DirectMessage.associate = (models) => {

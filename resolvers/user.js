@@ -18,6 +18,10 @@ export default {
   },
   Query: {
     getUser: (parent, { userId }, { models }) => models.User.findOne({ where: { id: userId } }),
+    getUserPublicKeys: (parent, { userName }, { models }) =>
+      models.User.findOne({ where: { username: userName } }),
+    getUserPrivateKeys: (parent, { userName }, { models }) =>
+      models.User.findOne({ where: { username: userName } }),
     allUsers: (parent, args, { models }) => models.User.findAll(),
     me: requiresAuth.createResolver((parent, args, {
       models,
