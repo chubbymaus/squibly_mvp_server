@@ -102,6 +102,7 @@ app.use(
       SECRET,
       SECRET2,
       channelLoader: new DataLoader(ids => channelBatcher(ids, models, req.user)),
+      serverUrl: `${req.protocol}://${req.get('host')}`,
     },
   })),
 );
@@ -119,7 +120,7 @@ app.use('/files', express.static('files'));
 
 const server = createServer(app);
 
-models.sequelize.sync({ force: true }).then(() => {
+models.sequelize.sync({ }).then(() => {
   server.listen(8080, () => {
     // eslint-disable-next-line no-new
     new SubscriptionServer(
