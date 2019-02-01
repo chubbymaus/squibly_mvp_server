@@ -1,11 +1,12 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-exports.default = function (sequelize, DataTypes) {
-  var Channel = sequelize.define('channel', {
+var _default = (sequelize, DataTypes) => {
+  const Channel = sequelize.define('channel', {
     name: DataTypes.STRING,
     public: {
       type: DataTypes.BOOLEAN,
@@ -17,28 +18,26 @@ exports.default = function (sequelize, DataTypes) {
     },
     passphrase_hint: {
       type: DataTypes.STRING
-
     },
     public_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
 
     },
     private_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
+
     },
     sig_public_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
+
     },
     sig_private_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
+
     }
   });
 
-  Channel.associate = function (models) {
+  Channel.associate = models => {
     Channel.belongsTo(models.Team, {
       foreignKey: {
         name: 'teamId',
@@ -63,3 +62,5 @@ exports.default = function (sequelize, DataTypes) {
 
   return Channel;
 };
+
+exports.default = _default;

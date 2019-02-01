@@ -1,6 +1,13 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.default = "\n    type Error {\n        path: String!\n        message: String\n    }\n";
+exports.default = void 0;
+var _default = `
+    type Error {
+        path: String!
+        message: String
+    }
+`;
+exports.default = _default;

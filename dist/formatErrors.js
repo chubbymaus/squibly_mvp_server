@@ -3,18 +3,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _lodash = require("lodash");
-
-var _lodash2 = _interopRequireDefault(_lodash);
+var _lodash = _interopRequireDefault(require("lodash"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (e, models) {
+var _default = (e, models) => {
   if (e instanceof models.sequelize.ValidationError) {
-    return e.errors.map(function (x) {
-      return _lodash2.default.pick(x, ["path", "message"]);
-    });
+    return e.errors.map(x => _lodash.default.pick(x, ["path", "message"]));
   }
-  return [{ path: "name", message: "something went wrong" }];
+
+  return [{
+    path: "name",
+    message: "something went wrong"
+  }];
 };
+
+exports.default = _default;

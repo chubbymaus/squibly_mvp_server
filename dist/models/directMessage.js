@@ -1,11 +1,12 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-exports.default = function (sequelize, DataTypes) {
-  var DirectMessage = sequelize.define('direct_message', {
+var _default = (sequelize, DataTypes) => {
+  const DirectMessage = sequelize.define('direct_message', {
     text: DataTypes.STRING,
     sender_name: DataTypes.STRING,
     receiver_name: DataTypes.STRING,
@@ -13,7 +14,7 @@ exports.default = function (sequelize, DataTypes) {
     signature: DataTypes.STRING(2048)
   });
 
-  DirectMessage.associate = function (models) {
+  DirectMessage.associate = models => {
     // 1:M
     DirectMessage.belongsTo(models.Team, {
       foreignKey: {
@@ -37,3 +38,5 @@ exports.default = function (sequelize, DataTypes) {
 
   return DirectMessage;
 };
+
+exports.default = _default;

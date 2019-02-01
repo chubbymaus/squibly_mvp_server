@@ -1,11 +1,12 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-exports.default = function (sequelize, DataTypes) {
-  var Message = sequelize.define('message', {
+var _default = (sequelize, DataTypes) => {
+  const Message = sequelize.define('message', {
     text: DataTypes.STRING(2048),
     url: DataTypes.STRING,
     filetype: DataTypes.STRING,
@@ -18,7 +19,7 @@ exports.default = function (sequelize, DataTypes) {
     }]
   });
 
-  Message.associate = function (models) {
+  Message.associate = models => {
     Message.belongsTo(models.Channel, {
       foreignKey: {
         name: 'channelId',
@@ -35,3 +36,5 @@ exports.default = function (sequelize, DataTypes) {
 
   return Message;
 };
+
+exports.default = _default;

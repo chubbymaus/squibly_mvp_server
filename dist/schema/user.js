@@ -3,4 +3,51 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = "\n\n  type User {\n    id: Int!\n    firstname: String!\n    lastname: String!\n    jobtitle: String!\n    passphrase_hint: String!\n    public_key: String!\n    private_key: String!\n    sig_public_key: String!\n    sig_private_key: String!\n    username: String!\n    email: String!\n    teams: [Team!]!\n  }\n\n  type Query {\n    me: User!\n    allUsers: [User!]!\n    getUserPublicKeys( userName: String! ): User\n    getUserPrivateKeys( userName: String! ): User\n    getUser( userId: Int! ): User\n    passPhrase: User!\n  }\n\n  type RegisterResponse {\n    ok: Boolean!\n    user: User\n    errors: [Error!]\n  }\n\n  type LoginResponse {\n    ok: Boolean!\n    token: String\n    refreshToken: String\n    \n    errors: [Error!]\n  }\n\n  type Mutation {\n    register(firstname: String!, lastname: String!, username: String!, jobtitle: String!, passphrase_hint: String!, public_key: String!, private_key: String!, sig_public_key: String!, sig_private_key: String!, email: String!, password: String!): RegisterResponse!\n    login(email: String!, password: String!): LoginResponse!\n  }\n\n";
+exports.default = void 0;
+var _default = `
+
+  type User {
+    id: Int!
+    firstname: String!
+    lastname: String!
+    jobtitle: String!
+    passphrase_hint: String!
+    public_key: String!
+    private_key: String!
+    sig_public_key: String!
+    sig_private_key: String!
+    username: String!
+    email: String!
+    teams: [Team!]!
+  }
+
+  type Query {
+    me: User!
+    allUsers: [User!]!
+    getUserPublicKeys( userName: String! ): User
+    getUserPrivateKeys( userName: String! ): User
+    getUser( userId: Int! ): User
+    passPhrase: User!
+  }
+
+  type RegisterResponse {
+    ok: Boolean!
+    user: User
+    errors: [Error!]
+  }
+
+  type LoginResponse {
+    ok: Boolean!
+    token: String
+    refreshToken: String
+    
+    errors: [Error!]
+  }
+
+  type Mutation {
+    register(firstname: String!, lastname: String!, username: String!, jobtitle: String!, passphrase_hint: String!, public_key: String!, private_key: String!, sig_public_key: String!, sig_private_key: String!, email: String!, password: String!): RegisterResponse!
+    login(email: String!, password: String!): LoginResponse!
+  }
+
+`;
+exports.default = _default;

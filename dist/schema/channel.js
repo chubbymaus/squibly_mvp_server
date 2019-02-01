@@ -3,4 +3,42 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = "\n\n  type Channel {\n    id: Int!\n    name: String!\n    public: Boolean!\n    messages: [Message!]!\n    passphrase_hint: String!\n    public_key: String!\n    private_key: String!\n    sig_public_key: String!\n    sig_private_key: String!\n    users: [User!]!\n    dm: Boolean!\n  }\n\n  type ChannelResponse {\n    ok: Boolean!\n    channel: Channel\n    errors: [Error!]\n  }\n\n  type Query {\n    getChannelPublicKeys( channelName: String! ): Channel\n    getChannelPrivateKeys( channelName: String! ): Channel\n  }\n\n  type DMChannelResponse {\n    id: Int!\n    name: String!\n  }\n\n  type Mutation {\n    createChannel(teamId: Int!, name: String!, public: Boolean=false, passphrase_hint: String!, public_key: String!, private_key: String!, sig_public_key: String!, sig_private_key: String!, members: [Int!]=[]): ChannelResponse!\n    getOrCreateChannel(teamId: Int!, members: [Int!]!): DMChannelResponse!\n  }\n";
+exports.default = void 0;
+var _default = `
+
+  type Channel {
+    id: Int!
+    name: String!
+    public: Boolean!
+    messages: [Message!]!
+    passphrase_hint: String!
+    public_key: String!
+    private_key: String!
+    sig_public_key: String!
+    sig_private_key: String!
+    users: [User!]!
+    dm: Boolean!
+  }
+
+  type ChannelResponse {
+    ok: Boolean!
+    channel: Channel
+    errors: [Error!]
+  }
+
+  type Query {
+    getChannelPublicKeys( channelName: String! ): Channel
+    getChannelPrivateKeys( channelName: String! ): Channel
+  }
+
+  type DMChannelResponse {
+    id: Int!
+    name: String!
+  }
+
+  type Mutation {
+    createChannel(teamId: Int!, name: String!, public: Boolean=false, passphrase_hint: String!, public_key: String!, private_key: String!, sig_public_key: String!, sig_private_key: String!, members: [Int!]=[]): ChannelResponse!
+    getOrCreateChannel(teamId: Int!, members: [Int!]!): DMChannelResponse!
+  }
+`;
+exports.default = _default;

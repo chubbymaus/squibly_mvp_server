@@ -1,7 +1,15 @@
 {
   "presets": [
-    "env",
-    "stage-3"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "10.15.1"
+        }
+      }
+    ]
   ],
-  "plugins": ["transform-runtime"]
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread"
+  ]
 }

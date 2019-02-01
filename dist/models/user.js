@@ -3,23 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-var _regenerator = require("babel-runtime/regenerator");
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = require("babel-runtime/helpers/asyncToGenerator");
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-
-var _bcrypt = require("bcrypt");
-
-var _bcrypt2 = _interopRequireDefault(_bcrypt);
+var _bcrypt = _interopRequireDefault(require("bcrypt"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (sequelize, DataTypes) {
-  var User = sequelize.define("user", {
+var _default = (sequelize, DataTypes) => {
+  const User = sequelize.define("user", {
     firstname: {
       type: DataTypes.STRING,
       validate: {
@@ -71,24 +62,22 @@ exports.default = function (sequelize, DataTypes) {
     },
     passphrase_hint: {
       type: DataTypes.STRING
-
     },
     public_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
 
     },
     private_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
+
     },
     sig_public_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
+
     },
     sig_private_key: {
-      type: DataTypes.STRING(2048)
-      // unique: true,
+      type: DataTypes.STRING(2048) // unique: true,
+
     },
     email: {
       type: DataTypes.STRING,
@@ -111,38 +100,15 @@ exports.default = function (sequelize, DataTypes) {
     }
   }, {
     hooks: {
-      afterValidate: function () {
-        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(user) {
-          var hashedPassword;
-          return _regenerator2.default.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  _context.next = 2;
-                  return _bcrypt2.default.hash(user.password, 12);
+      afterValidate: async user => {
+        const hashedPassword = await _bcrypt.default.hash(user.password, 12); // eslint-disable-next-line no-param-reassign
 
-                case 2:
-                  hashedPassword = _context.sent;
-
-                  // eslint-disable-next-line no-param-reassign
-                  user.password = hashedPassword;
-
-                case 4:
-                case "end":
-                  return _context.stop();
-              }
-            }
-          }, _callee, undefined);
-        }));
-
-        return function afterValidate(_x) {
-          return _ref.apply(this, arguments);
-        };
-      }()
+        user.password = hashedPassword;
+      }
     }
   });
 
-  User.associate = function (models) {
+  User.associate = models => {
     User.belongsToMany(models.Team, {
       through: models.Member,
       foreignKey: {
@@ -168,3 +134,5 @@ exports.default = function (sequelize, DataTypes) {
 
   return User;
 };
+
+exports.default = _default;

@@ -1,16 +1,18 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = void 0;
 
-exports.default = function (sequelize, DataTypes) {
-  var Member = sequelize.define('member', {
+var _default = (sequelize, DataTypes) => {
+  const Member = sequelize.define('member', {
     admin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     }
   });
-
   return Member;
 };
+
+exports.default = _default;
