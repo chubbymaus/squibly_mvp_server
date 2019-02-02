@@ -15,7 +15,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: squibly
   web:
-    image: squibly_mvp_server
+    image: chubbymaus/squibly_mvp_server:latest
     networks:
       - webnet
     environment:
@@ -33,7 +33,7 @@ services:
       - ./mysite.template:/etc/nginx/conf.d/mysite.template
       - ./files:/files
     ports:
-      - "8080:80"
+      - "80:80"
     networks:
       - webnet
     depends_on:
