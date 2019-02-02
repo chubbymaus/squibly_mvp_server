@@ -12,6 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 const sequelize = new _sequelize.default('squibly', 'postgres', 'postgres', {
   dialect: 'postgres',
   operatorsAliases: _sequelize.default.Op,
+  host: process.env.DB_HOST || 'localhost',
   define: {
     underscored: true
   }
