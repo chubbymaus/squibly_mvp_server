@@ -43,7 +43,7 @@ const schema = (0, _graphqlTools.makeExecutableSchema)({
   resolvers
 });
 const app = (0, _express.default)();
-app.use((0, _cors.default)('*'));
+app.use((0, _cors.default)());
 
 const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];

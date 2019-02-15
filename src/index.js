@@ -30,7 +30,8 @@ const schema = makeExecutableSchema({
 
 const app = express();
 
-app.use(cors('*'));
+
+app.use(cors());
 
 const addUser = async (req, res, next) => {
   const token = req.headers['x-token'];
